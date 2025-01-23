@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\Components\Header\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Views\Shared\Components\Header\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Views\Shared\_Layout.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -14,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ViewComponents\" />
     <Folder Include="Views\MainPage\" />
   </ItemGroup>
 
