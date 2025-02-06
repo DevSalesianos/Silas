@@ -24,5 +24,11 @@ namespace Silas.Controllers
         {
             return View();
         }
+
+
+        public IActionResult LeftPanel()
+        {
+            return View();
+        }
     }
 }

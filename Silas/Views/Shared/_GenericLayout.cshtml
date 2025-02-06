@@ -40,7 +40,14 @@
 
             <!-- LATERAL DERECHO -->
             <div id="right_panel">
-                @Html.Partial("_RightPanelPartial", userRole)
+                @{
+
+                    if (userRole == "company"){
+                        Html.Action("LeftPanel", "LeftPanel");
+                    }
+                }
+                    
+                
             </div>
         </div>
 
