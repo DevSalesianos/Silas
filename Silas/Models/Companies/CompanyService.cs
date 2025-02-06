@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Silas.Models.Offers;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -114,5 +115,7 @@ namespace Silas.Models.Companies
                 return null;
             }
         }
+
+
     }
 }

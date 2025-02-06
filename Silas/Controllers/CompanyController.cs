@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Silas.Models.Companies;
+using Silas.Models.Offers;
 
 namespace Silas.Controllers
 {
@@ -24,5 +25,7 @@ namespace Silas.Controllers
         {
             return View();
         }
+
+
     }
 }
