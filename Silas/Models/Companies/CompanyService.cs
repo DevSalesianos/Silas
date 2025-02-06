@@ -117,16 +117,22 @@ namespace Silas.Models.Companies
 
 
         //RECOGE LOS APLIQUES UNA COMPAÑIA
-        public async Task< List<Apply> > ListAplliesByCompanyId(int id_company)
+        public async Task<List<Apply>> ListAplliesByCompanyId(int id_company)
         {
             var response = await _httpClient.GetAsync($"http://volumidev.duckdns.org/silasapp/api/endpoint/getApliesByCompanyId.php?id_company={id_company}");
 
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                var applies = JsonSerializer.Deserialize<List<Apply>>(json);
+                var data = JsonSerializer.Deserialize<AppliesResponse>(json);
+                var applies = data.Applies;
+                return applies;
             }
+            else
+            {
+                return null;
 
+            }
         }
 
     }

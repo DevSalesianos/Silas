@@ -92,7 +92,7 @@ namespace Silas.Models.Usuarios
                 return false;
             }
         }
-        
+
 
 
 
@@ -108,25 +108,40 @@ namespace Silas.Models.Usuarios
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await _httpClient.PostAsync("http://volumidev.duckdns.org/silasapp/api/endpoint/credential_validator.php", content);
-                if (response.IsSuccessStatusCode)
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Response Content: {responseContent}");
+
+                if (!response.IsSuccessStatusCode)
                 {
-                    string responseContent = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Error en la API. Código: {response.StatusCode}, Respuesta: {responseContent}");
+                    return new UserValidatorResponse(-1, -1, -1, "Credentials Error");
+                }
+
+                if (response.Content.Headers.ContentType?.MediaType != "application/json")
+                {
+                    Console.WriteLine("La respuesta no es JSON.");
+                    return new UserValidatorResponse(-1, -1, -1, "Invalid Response");
+                }
+
+                try
+                {
                     UserValidatorResponse result = JsonSerializer.Deserialize<UserValidatorResponse>(responseContent);
                     return result;
                 }
-                else
+                catch (JsonException ex)
                 {
-                    UserValidatorResponse resp = new UserValidatorResponse(-1, -1, -1, "Credentials Error");
-                    return resp;
+                    Console.WriteLine($"Error al deserializar JSON: {ex.Message}");
+                    Console.WriteLine($"Contenido recibido: {responseContent}");
+                    return new UserValidatorResponse(-1, -1, -1, "Invalid JSON");
                 }
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Error en la solicitud: {ex.Message}");
-                UserValidatorResponse resp = new UserValidatorResponse(-1, -1, -1, "Error");
-                return resp;
+                Console.WriteLine($"Error en la solicitud HTTP: {ex.Message}");
+                return new UserValidatorResponse(-1, -1, -1, "Network Error");
             }
-
         }
+
     }
 }

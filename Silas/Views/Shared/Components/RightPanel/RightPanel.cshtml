@@ -1,0 +1,35 @@
+﻿@model Silas.Models.RightPanelViewModel
+
+@if (Model.userRole == "admin")
+{
+    <h4>Últimos 10 apliques</h4>
+
+    <ul>
+        @foreach(var item in Model.datalist)
+		{
+			<li>@item</li>
+		}
+
+    </ul>
+}
+else if (Model.userRole == "student")
+{
+    <h4>5 últimas nuevas ofertas</h4>
+    <ul>
+        <li>Oferta 1</li>
+        <li>Oferta 2</li>
+        <!-- EJEMPLO -->
+        <li>Oferta 5</li>
+    </ul>
+}
+else if (Model.userRole == "company")
+{
+    <h4>Total de Apliques activas</h4>
+    <ul>
+        @foreach (var item in Model.datalist)
+        {
+            <li>@item</li>
+        }
+
+    </ul>
+}

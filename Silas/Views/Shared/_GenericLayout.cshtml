@@ -2,11 +2,7 @@
     // Aquí normalmente Layout = null si queremos que este sea el layout “base” no?
     // SIN HERENCIA
     @model Silas.Models.Usuarios.UserValidatorResponse
-    Layout = null;
-
-    // Pruebas
-    var userRole = Model.category;
-    var userName = Model.name;
+    
 }
 
 <!DOCTYPE html>
@@ -23,15 +19,15 @@
     <div id="generic_body">
 
         <!-- HEADER -->
-        @Html.Partial("_HeaderPartial", (userRole, userName))
+        @Html.Partial("_HeaderPartial", (Model.category, Model.name))
 
         <!-- CONTENEDOR (MAIN,LATDER,LATIZQ) -->
         <div id="generic_central_panel">
 
             <!-- LATERAL IZQUIERDO -->
             <div id="left_panel">
-                @Html.Partial("_LeftPanelPartial", (userRole))
-            </div>
+@*                 @Html.Partial("_LeftPanelPartial", (Model.category))
+ *@         </div>
 
             <!-- MAIN -> Q SERÁ EL CONTENIDO Q PONGA LA VISTA HIJA -->
             <div id="central_panel">
@@ -41,13 +37,10 @@
             <!-- LATERAL DERECHO -->
             <div id="right_panel">
                 @{
-
-                    if (userRole == "company"){
-                        Html.Action("LeftPanel", "LeftPanel");
+                    if (Model.category == "company"){
+                        @await Component.InvokeAsync("RightPanel",new{Model.category, Model.id});
                     }
                 }
-                    
-                
             </div>
         </div>
 
