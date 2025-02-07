@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Silas.Models;
 using Silas.Models.Companies;
+using Silas.ViewModels;
+
 
 namespace Silas.ViewComponents
 {
@@ -23,15 +25,20 @@ namespace Silas.ViewComponents
             // Por ejemplo, si deseas obtener datos adicionales según el userRole.
             // En este ejemplo, simplemente se pasa el userRole al componente.
 
-            var appliesList = await _companyService.ListAplliesByCompanyId(id);
 
-            var model = new RightPanelViewModel
-			{
-				userRole = userRole,
-				datalist = appliesList
-			};
+            if (userRole == "company"){
+                var appliesList = await _companyService.ListAplliesByCompanyId(id);
 
-			return View("RightPanel", model);
+                var model = new RightPanelViewModel
+			    {
+				    userRole = userRole,
+				    datalist = appliesList
+			    };
+			    return View("RightPanel", model);
+
+            }
+            //AQUI OTRA COSA
+			return View("RightPanel");
         }
 
     }

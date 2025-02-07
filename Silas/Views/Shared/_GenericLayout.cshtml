@@ -1,8 +1,12 @@
 ﻿@{
     // Aquí normalmente Layout = null si queremos que este sea el layout “base” no?
     // SIN HERENCIA
-    @model Silas.Models.Usuarios.UserValidatorResponse
-    
+    @model Silas.Models.Usuarios.UserValidatorResponse;
+    Layout = null;
+
+    // Pruebas
+    var userRole = Model.category;
+    var userName = Model.name;
 }
 
 <!DOCTYPE html>
@@ -26,21 +30,20 @@
 
             <!-- LATERAL IZQUIERDO -->
             <div id="left_panel">
-@*                 @Html.Partial("_LeftPanelPartial", (Model.category))
- *@         </div>
+                <!-- IMPORTANTE, "LeftPanel" ESTÁ LLAMANDO REALMENTE A LeftPanelViewComponent, AL MÉTODO InvokeAsync que tenemos allí
+                AL QUE LE ESTAMOS ENVIANDO userRole y userId
+                                -->
+                @await Component.InvokeAsync("LeftPanel", new { userRole = Model.category, userId = Model.id })
+            </div>
 
             <!-- MAIN -> Q SERÁ EL CONTENIDO Q PONGA LA VISTA HIJA -->
             <div id="central_panel">
-               @Html.Partial("Generic")
+                @Html.Partial("Generic")
             </div>
 
             <!-- LATERAL DERECHO -->
             <div id="right_panel">
-                @{
-                    if (Model.category == "company"){
-                        @await Component.InvokeAsync("RightPanel",new{Model.category, Model.id});
-                    }
-                }
+                @await Component.InvokeAsync("RightPanel", new { userRole = Model.category, userId = Model.id })
             </div>
         </div>
 

@@ -1,4 +1,4 @@
-﻿@model Silas.Models.RightPanelViewModel
+﻿@model Silas.ViewModels.RightPanelViewModel
 
 @if (Model.userRole == "admin")
 {
@@ -28,7 +28,9 @@ else if (Model.userRole == "company")
     <ul>
         @foreach (var item in Model.datalist)
         {
-            <li>@item</li>
+            <li>
+                <b>@item.Title</b>
+            </li>
         }
 
     </ul>
