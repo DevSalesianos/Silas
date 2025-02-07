@@ -23,18 +23,14 @@ else if (Model.userRole == "student")
 else if (Model.userRole == "company")
 {
     <h4>Todas mis ofertas activas</h4>
-    <ul>
-        @foreach (var item in Model.datalist)
+    <ul class="list-group">
+        @for (int i = 0; i < Model.datalist.Count; i++)
         {
-            <li>@item.title, @item.date</li>
+            <li class="list-group-item">
+                <p><b>@Model.datalist[i].title:</b></p>
+                <p>@Model.datalist[i].date.ToString("dd/MM/yyyy")</p>
+                </li>
         }
-
-        @*   public int id { get; set; }
-    public string title { get; set; }
-    public string description { get; set; }
-    public string requiriments { get; set; }
-    public DateTime date { get; set; }
-    public string location { get; set; }
-    public int id_company { get; set; } *@
     </ul>
+    
 }
