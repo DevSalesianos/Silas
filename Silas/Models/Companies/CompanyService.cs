@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Silas.Models.Applies;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -126,11 +127,11 @@ namespace Silas.Models.Companies
                 var json = await response.Content.ReadAsStringAsync();
                 var data = JsonSerializer.Deserialize<AppliesResponse>(json);
                 var applies = data.Applies;
-                return applies ?? new List<Apply>();
+                return applies;
             }
             else
             {
-                return null;
+                return [];
 
             }
         }

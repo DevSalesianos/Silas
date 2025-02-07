@@ -8,9 +8,6 @@ namespace Silas.ViewModels
         public string userRole { get; set; }
         public List<Apply> datalist { get; set; }
 
-        public static implicit operator RightPanelViewModel(RightPanelViewModel v)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
