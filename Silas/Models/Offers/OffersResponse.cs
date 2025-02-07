@@ -4,4 +4,8 @@
     {
         public List<Offer> Offers { get; set; }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> panelderecho1

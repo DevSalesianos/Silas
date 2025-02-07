@@ -27,5 +27,12 @@ namespace Silas.Controllers
         }
 
 
+<<<<<<< HEAD
+=======
+        public IActionResult LeftPanel()
+        {
+            return View();
+        }
+>>>>>>> panelderecho1
     }
 }

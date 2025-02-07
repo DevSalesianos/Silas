@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using Silas.Models.Offers;
+=======
+﻿using Silas.Models.Applies;
+>>>>>>> panelderecho1
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -117,5 +121,27 @@ namespace Silas.Models.Companies
         }
 
 
+<<<<<<< HEAD
+=======
+        //RECOGE LOS APLIQUES UNA COMPAÑIA
+        public async Task<List<Apply>> ListAplliesByCompanyId(int id_company)
+        {
+            var response = await _httpClient.GetAsync($"http://volumidev.duckdns.org/silasapp/api/endpoint/getApliesByCompanyId.php?id_company=11");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var data = JsonSerializer.Deserialize<AppliesResponse>(json);
+                var applies = data.Applies;
+                return applies;
+            }
+            else
+            {
+                return [];
+
+            }
+        }
+
+>>>>>>> panelderecho1
     }
 }

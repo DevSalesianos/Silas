@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿@model Silas.Models.LeftPanelViewModel;// "Admin" / "Alumno" / "Empresa"
+=======
+﻿@model Silas.ViewModels.LeftPanelViewModel// "Admin" / "Alumno" / "Empresa"
+>>>>>>> panelderecho1
 
 @if (Model.userRole == "admin")
 {
@@ -23,6 +27,7 @@ else if (Model.userRole == "student")
 else if (Model.userRole == "company")
 {
     <h4>Todas mis ofertas activas</h4>
+<<<<<<< HEAD
     <ul>
         @foreach(var item in Model.datalist)
         {
@@ -38,3 +43,16 @@ else if (Model.userRole == "company")
         public int id_company { get; set; } *@
     </ul>
 }
+=======
+    <ul class="list-group">
+        @for (int i = 0; i < Model.datalist.Count; i++)
+        {
+            <li class="list-group-item">
+                <p><b>@Model.datalist[i].title:</b></p>
+                <p>@Model.datalist[i].date.ToString("dd/MM/yyyy")</p>
+                </li>
+        }
+    </ul>
+    
+}
+>>>>>>> panelderecho1

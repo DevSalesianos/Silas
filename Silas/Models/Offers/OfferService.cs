@@ -20,7 +20,11 @@ namespace Silas.Models.Offers
             try
             {
                 var company = companyId;
+<<<<<<< HEAD
                 var response = await _httpClient.GetAsync($"http://volumidev.duckdns.org/silasapp/api/endpoint/listOffersByCompanyId.php?id_company=11");
+=======
+                var response = await _httpClient.GetAsync($"http://volumidev.duckdns.org/silasapp/api/endpoint/listOffersByCompanyId.php?id_company={companyId}");
+>>>>>>> panelderecho1
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -38,4 +42,8 @@ namespace Silas.Models.Offers
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> panelderecho1
